@@ -1,0 +1,262 @@
+CREATE TABLE `cargo`  (
+  `Id_Cargo` int NOT NULL AUTO_INCREMENT,
+  `nombre_Cargo` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Descripcion_Cargo` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Privilegios_Cargo` int NOT NULL,
+  PRIMARY KEY (`Id_Cargo`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `categoria`  (
+  `Id_Categoria` int NOT NULL AUTO_INCREMENT,
+  `Nombre_Categoria` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`Id_Categoria`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `ciudad`  (
+  `Id_Ciudad` int NOT NULL AUTO_INCREMENT,
+  `Nombre_Ciudad` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Proviencia` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Id_Region` int NOT NULL,
+  PRIMARY KEY (`Id_Ciudad`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `Cliente`  (
+  `Id_Cliente` int NOT NULL AUTO_INCREMENT,
+  `Nombre_Cliente` varchar(50) NOT NULL,
+  `Rut_Cliente` varchar(15) NOT NULL,
+  `Direccion` varchar(100) NOT NULL,
+  `Id_Ciudad` int NOT NULL,
+  `Telefono` varchar(15) NOT NULL,
+  `Estado` char(1) NOT NULL,
+  PRIMARY KEY (`Id_Cliente`)
+);
+
+CREATE TABLE `compra`  (
+  `Id_Compra` int NOT NULL,
+  `Id_Proveedor` int NOT NULL,
+  `Fecha` date NOT NULL,
+  `Orden_Compra` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `neto` int NOT NULL,
+  `iva` int NOT NULL,
+  `total` int NOT NULL,
+  PRIMARY KEY (`Id_Compra`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `detalle_compra`  (
+  `Id_Detalle_Compra` int NOT NULL AUTO_INCREMENT,
+  `Id_Compra` int NOT NULL,
+  `Id_Producto` int NOT NULL,
+  `Cod_Ingrediente_Proveedor` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Costo_Compra` int NOT NULL,
+  `Cantidad` int NOT NULL,
+  `Neto` int NOT NULL,
+  `Iva` int NOT NULL,
+  `Total` int NOT NULL,
+  PRIMARY KEY (`Id_Detalle_Compra`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `detalle_orden`  (
+  `Id_Datalle_Orden` int NOT NULL AUTO_INCREMENT,
+  `Id_Orden` int NOT NULL,
+  `Id_Receta` int NOT NULL,
+  `Cantidad_Orden` int NOT NULL,
+  `Observacion_Orden` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`Id_Datalle_Orden`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `detalle_venta`  (
+  `Id_Detalle_Venta` int NOT NULL AUTO_INCREMENT,
+  `Id_Venta` int NOT NULL,
+  `Id_Orden` int NOT NULL,
+  PRIMARY KEY (`Id_Detalle_Venta`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `empleado`  (
+  `Id_Empleado` int NOT NULL AUTO_INCREMENT,
+  `Nombre_Empleado` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Rut_Empleado` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Id_Ciudad` int NOT NULL,
+  `Direccion` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Telefono` varbinary(25) NOT NULL,
+  `Id_Cargo` int NOT NULL,
+  `Turno_Empleado` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Sueldo` int NOT NULL,
+  `Fecha_Contrato` date NOT NULL,
+  `Id_Tipo_Contrato` int NOT NULL,
+  `Comicion` int NOT NULL,
+  `Labor` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`Id_Empleado`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `estado_orden`  (
+  `Id_Estado_Orden` int NOT NULL AUTO_INCREMENT,
+  `nombre_Tipo_Estado_Orden` varchar(50) NOT NULL,
+  PRIMARY KEY (`Id_Estado_Orden`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `ingrediente`  (
+  `Id_Ingrediente` int NOT NULL AUTO_INCREMENT,
+  `Id_Producto` int NOT NULL,
+  `Unidad_Medida_Ingrediente` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Tamanio_Medida_Ingrediente` int NOT NULL,
+  PRIMARY KEY (`Id_Ingrediente`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `lista_ingrediente_receta`  (
+  `Id_Lista_Ingrediente_Receta` int NOT NULL AUTO_INCREMENT,
+  `Id_Receta` int NOT NULL,
+  `Id_Ingrediente` int NOT NULL,
+  `Nombre_Ingrediente_Receta` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Unidad_Medida_Ingrediente_Receta` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Tamanio_Medida_Ingrediente_Receta` int NOT NULL,
+  `Cantidad_Medida_Ingrediente_Receta` int NOT NULL,
+  PRIMARY KEY (`Id_Lista_Ingrediente_Receta`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `marca`  (
+  `id_Marca` int NOT NULL AUTO_INCREMENT,
+  `nombre_Marca` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id_Marca`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `mesa`  (
+  `Id_Mesa` int NOT NULL AUTO_INCREMENT,
+  `Numero_Mesa` int NOT NULL,
+  `Id_Estado_Mesa` int NOT NULL,
+  PRIMARY KEY (`Id_Mesa`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `orden`  (
+  `Id_Orden` int NOT NULL AUTO_INCREMENT,
+  `Fecha_Orden` date NOT NULL,
+  `Hora_Orden` time NOT NULL,
+  `Id_Estado_Orden` int NOT NULL,
+  `Id_Mesa` int NOT NULL,
+  `Id_empleado` int NOT NULL,
+  `Precio_Neto` int NOT NULL,
+  `Iva` int NOT NULL,
+  `Precio_Total` int NOT NULL,
+  `Propina_Sugerida` int NOT NULL,
+  `Precio_Total_Propina` int NOT NULL,
+  PRIMARY KEY (`Id_Orden`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `Producto`  (
+  `Id_Producto` int NOT NULL AUTO_INCREMENT,
+  `Nombre_Producto` varchar(50) NOT NULL,
+  `Stock` int NOT NULL,
+  `Id_Marca` int NOT NULL,
+  `Cantidad_Minima` int NOT NULL,
+  `Cantidad_Maxima` int NOT NULL,
+  PRIMARY KEY (`Id_Producto`)
+);
+
+CREATE TABLE `Producto_Proveedor`  (
+  `Id_Producto_Proveedor` int NOT NULL AUTO_INCREMENT,
+  `Id_Producto` int NOT NULL,
+  `Id_Proveedor` int NOT NULL,
+  `Precio_Compra` int NOT NULL,
+  PRIMARY KEY (`Id_Producto_Proveedor`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `proveedor`  (
+  `Id_Proveedor` int NOT NULL AUTO_INCREMENT,
+  `nombre_Proveedor` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Rut_Proveedor` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Id_Ciudad` int NOT NULL,
+  `Direccion` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Telefono` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `tiempos_Espera` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`Id_Proveedor`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `receta`  (
+  `Id_Receta` int NOT NULL AUTO_INCREMENT,
+  `Nombre_Receta` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Lista_Ingrediente_Receta` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Tiempo_Preparacion_Receta` time(6) NOT NULL,
+  `Id_Categoria` int NOT NULL,
+  `Receta_Estado` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Costo` int NOT NULL,
+  `Margen_Ganancia` int NOT NULL,
+  `Precio_Venta` int NOT NULL,
+  `Oferta` int NOT NULL,
+  PRIMARY KEY (`Id_Receta`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `region`  (
+  `Id_Region` int NOT NULL AUTO_INCREMENT,
+  `nombre_Region` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Pais` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`Id_Region`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `tipo_contrato`  (
+  `Id_Tipo_Contrato` int NOT NULL,
+  `Nombre_Tipo_Contrato` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Tiempo_Contrato_Dias` int NOT NULL,
+  `Horas_Semanales` int NOT NULL,
+  PRIMARY KEY (`Id_Tipo_Contrato`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `Tipo_Documento`  (
+  `Id_Tipo_Documento` int NOT NULL AUTO_INCREMENT,
+  `Nombre_Documento` varchar(30) NOT NULL,
+  `Descripcion` varchar(150) NOT NULL,
+  PRIMARY KEY (`Id_Tipo_Documento`)
+);
+
+CREATE TABLE `tipo_estado_mesa`  (
+  `Id_Estado_Mesa` int NOT NULL AUTO_INCREMENT,
+  `nombre_Tipo_estado_Mesa` varchar(50) NOT NULL,
+  PRIMARY KEY (`Id_Estado_Mesa`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `Tipo_Forma_Pago`  (
+  `Id_Forma_Pago` int NOT NULL,
+  `Nombre_Forma_Pago` varchar(30) NOT NULL,
+  `Descripcion` varchar(150) NOT NULL,
+  PRIMARY KEY (`Id_Forma_Pago`)
+);
+
+CREATE TABLE `venta`  (
+  `Id_Venta` int NOT NULL AUTO_INCREMENT,
+  `Fecha` date NOT NULL,
+  `Hora` time NOT NULL,
+  `Id_Cliente` int NOT NULL,
+  `Id_Forma_Pago` int NOT NULL,
+  `Id_Documento` int NOT NULL,
+  `neto` int NOT NULL,
+  `iva` int NOT NULL,
+  `total` int NOT NULL,
+  PRIMARY KEY (`Id_Venta`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+ALTER TABLE `cargo` ADD CONSTRAINT `fk_cargo_empleado_1` FOREIGN KEY (`Id_Cargo`) REFERENCES `empleado` (`Id_Cargo`);
+ALTER TABLE `categoria` ADD CONSTRAINT `fk_categoria_receta_1` FOREIGN KEY (`Id_Categoria`) REFERENCES `receta` (`Id_Categoria`);
+ALTER TABLE `ciudad` ADD CONSTRAINT `fk_ciudad_Cliente_1` FOREIGN KEY (`Id_Ciudad`) REFERENCES `Cliente` (`Id_Ciudad`);
+ALTER TABLE `ciudad` ADD CONSTRAINT `fk_ciudad_empleado_1` FOREIGN KEY (`Id_Ciudad`) REFERENCES `empleado` (`Id_Ciudad`);
+ALTER TABLE `ciudad` ADD CONSTRAINT `fk_ciudad_proveedor_1` FOREIGN KEY (`Id_Ciudad`) REFERENCES `proveedor` (`Id_Ciudad`);
+ALTER TABLE `Cliente` ADD CONSTRAINT `fk_Cliente_venta_1` FOREIGN KEY (`Id_Cliente`) REFERENCES `venta` (`Id_Cliente`);
+ALTER TABLE `compra` ADD CONSTRAINT `fk_compra_detalle_compra_1` FOREIGN KEY (`Id_Compra`) REFERENCES `detalle_compra` (`Id_Compra`);
+ALTER TABLE `empleado` ADD CONSTRAINT `fk_empleado_orden_1` FOREIGN KEY (`Id_Empleado`) REFERENCES `orden` (`Id_empleado`);
+ALTER TABLE `estado_orden` ADD CONSTRAINT `fk_estado_orden_orden_1` FOREIGN KEY (`Id_Estado_Orden`) REFERENCES `orden` (`Id_Estado_Orden`);
+ALTER TABLE `ingrediente` ADD CONSTRAINT `fk_ingrediente_lista_ingrediente_receta_1` FOREIGN KEY (`Id_Ingrediente`) REFERENCES `lista_ingrediente_receta` (`Id_Ingrediente`);
+ALTER TABLE `marca` ADD CONSTRAINT `fk_marca_Producto_1` FOREIGN KEY (`id_Marca`) REFERENCES `Producto` (`Id_Marca`);
+ALTER TABLE `mesa` ADD CONSTRAINT `fk_mesa_orden_1` FOREIGN KEY (`Id_Mesa`) REFERENCES `orden` (`Id_Mesa`);
+ALTER TABLE `orden` ADD CONSTRAINT `fk_orden_detalle_orden_1` FOREIGN KEY (`Id_Orden`) REFERENCES `detalle_orden` (`Id_Orden`);
+ALTER TABLE `orden` ADD CONSTRAINT `fk_orden_detalle_venta_1` FOREIGN KEY (`Id_Orden`) REFERENCES `detalle_venta` (`Id_Orden`);
+ALTER TABLE `Producto` ADD CONSTRAINT `fk_Producto_ingrediente_1` FOREIGN KEY (`Id_Producto`) REFERENCES `ingrediente` (`Id_Producto`);
+ALTER TABLE `Producto` ADD CONSTRAINT `fk_Producto_detalle_compra_1` FOREIGN KEY (`Id_Producto`) REFERENCES `detalle_compra` (`Id_Producto`);
+ALTER TABLE `Producto` ADD CONSTRAINT `fk_Producto_Producto_Proveedor_1` FOREIGN KEY (`Id_Producto`) REFERENCES `Producto_Proveedor` (`Id_Producto`);
+ALTER TABLE `proveedor` ADD CONSTRAINT `fk_proveedor_compra_1` FOREIGN KEY (`Id_Proveedor`) REFERENCES `compra` (`Id_Proveedor`);
+ALTER TABLE `proveedor` ADD CONSTRAINT `fk_proveedor_Producto_Proveedor_1` FOREIGN KEY (`Id_Proveedor`) REFERENCES `Producto_Proveedor` (`Id_Proveedor`);
+ALTER TABLE `receta` ADD CONSTRAINT `fk_receta_detalle_orden_1` FOREIGN KEY (`Id_Receta`) REFERENCES `detalle_orden` (`Id_Receta`);
+ALTER TABLE `receta` ADD CONSTRAINT `fk_receta_lista_ingrediente_receta_1` FOREIGN KEY (`Id_Receta`) REFERENCES `lista_ingrediente_receta` (`Id_Receta`);
+ALTER TABLE `region` ADD CONSTRAINT `fk_region_ciudad_1` FOREIGN KEY (`Id_Region`) REFERENCES `ciudad` (`Id_Region`);
+ALTER TABLE `tipo_contrato` ADD CONSTRAINT `fk_tipo_contrato_empleado_1` FOREIGN KEY (`Id_Tipo_Contrato`) REFERENCES `empleado` (`Id_Tipo_Contrato`);
+ALTER TABLE `Tipo_Documento` ADD CONSTRAINT `fk_Tipo_Documento_venta_1` FOREIGN KEY (`Id_Tipo_Documento`) REFERENCES `venta` (`Id_Documento`);
+ALTER TABLE `tipo_estado_mesa` ADD CONSTRAINT `fk_tipo_estado_mesa_mesa_1` FOREIGN KEY (`Id_Estado_Mesa`) REFERENCES `mesa` (`Id_Estado_Mesa`);
+ALTER TABLE `Tipo_Forma_Pago` ADD CONSTRAINT `fk_Tipo_Forma_Pago_venta_1` FOREIGN KEY (`Id_Forma_Pago`) REFERENCES `venta` (`Id_Forma_Pago`);
+ALTER TABLE `venta` ADD CONSTRAINT `fk_venta_detalle_venta_1` FOREIGN KEY (`Id_Venta`) REFERENCES `detalle_venta` (`Id_Venta`);
+
