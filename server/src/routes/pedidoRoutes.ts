@@ -1,5 +1,6 @@
 import {Router} from 'express'
 
+import pedidoController from '../controllers/pedidoControllers';
 
 class PedidoRoutes{
 
@@ -11,7 +12,11 @@ class PedidoRoutes{
 
     config(): void{
 
-        this.router.get('/',(req,res)=> res.send('Vista Pedido')); // se define ruta inicial de la aplicación
+        this.router.get('/', pedidoController.listPedido);
+        this.router.get('/:id', pedidoController.getPedidoMesa);
+        this.router.post('/', pedidoController.createPedido);
+        this.router.delete('/:id',pedidoController.deletePedido);
+        this.router.put('/:id', pedidoController.updatePedido);
     }
 
 }

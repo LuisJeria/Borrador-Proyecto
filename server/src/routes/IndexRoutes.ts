@@ -1,5 +1,6 @@
 import {Router} from 'express'
 
+import {indexController} from '../controllers/indexControllers';
 
 class IndexRoutes{
 
@@ -11,7 +12,7 @@ class IndexRoutes{
 
     config(): void{
 
-        this.router.get('/',(req,res)=> res.send('Vista Principal')); // se define ruta inicial de la aplicación
+        this.router.get('/',indexController.index); // se define ruta inicial de la aplicación
     }
 
 }
