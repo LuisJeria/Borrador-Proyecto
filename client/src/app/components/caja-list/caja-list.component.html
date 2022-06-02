@@ -12,24 +12,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
+      <tr *ngFor = "let ingreso of ingresos">
+        <th scope="row">{{ingreso.tipo_documento}}</th>
+        <td>{{ingreso.numero_documento}}</td>
+        <td>{{ingreso.neto}}</td>
+        <td>{{ingreso.iva}}</td>
+        <td>{{ingreso.total}}</td>
+        <td><a [routerLink]="['/caja/ingreso', ingreso.id]" class = "btn btn-warning">Editar</a></td>
+        <td><button class ="btn btn-danger" (click)="deleteIngreso(ingreso.id)">Eliminar</button></td>
       </tr>
     </tbody>
+   <a routerLink = "/caja/ingreso" class = "btn btn-primary">Nuevo Ingreso</a> 
   </table>
   <h4>EGRESOS</h4>
   <table class="table">
@@ -45,22 +38,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
+      <tbody>
+        <tr *ngFor = "let egreso of egresos">
+          <th scope="row">{{egreso.tipo_documento}}</th>
+          <td>{{egreso.numero_documento}}</td>
+          <td>{{egreso.neto}}</td>
+          <td>{{egreso.iva}}</td>
+          <td>{{egreso.total}}</td>
+          <td><button class ="btn btn-warning">Editar</button></td>
+          <td><button class="btn btn-danger">Eliminar</button></td>
+        </tr>
     </tbody>
   </table>
+  <a routerLink = "/caja/egreso" class = "btn btn-primary">Nuevo Egreso</a> 
