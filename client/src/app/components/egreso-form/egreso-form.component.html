@@ -1,1 +1,23 @@
-<p>egreso-form works!</p>
+<form>
+    <div class="form-group">
+      <label for="tipoDoc">Tipo Documento</label>
+      <input type="text" class="form-control" name="tipoDoc" [(ngModel)]="egreso.tipo_documento" placeholder="Ingresar Tipo Documento">
+    </div>
+    <div class="form-group">
+      <label for="numDoc">Numero Documento</label>
+      <input type="text" class="form-control" name="numDoc" [(ngModel)]="egreso.numero_documento" placeholder="Ingrese Numero Documento">
+    </div>
+    <div class="form-group">
+        <label for="neto">Valor Neto</label>
+        <input type="text" class="form-control" name="neto" [(ngModel)]="egreso.neto"placeholder="Ingrese Monto Neto">
+      </div>
+    <div class="form-group">
+        <label for="iva">IVA</label>
+        <input type="number" class="form-control" name="iva" [(ngModel)]="egreso.iva" placeholder="Ingrese monto iva">
+      </div>
+      <div class="form-group">
+        <label for="total">Total</label>
+        <input type="number" class="form-control" name="total" [(ngModel)]="egreso.total" placeholder="Ingrese monto Total">
+      </div>
+      <button class="btn btn-primary" (click)="edit ? updateEgreso():saveNewEgreso()">Submit</button>
+  </form>

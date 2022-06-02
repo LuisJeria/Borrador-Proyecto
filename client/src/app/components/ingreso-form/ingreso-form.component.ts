@@ -3,7 +3,7 @@ import { Ingreso } from 'src/app/models/Ingreso';
 
 import {Router,ActivatedRoute} from '@angular/router';
 
-import {CajasService} from '../../services/cajas.service'
+import {CajasService} from '../../services/cajas.service';
 
 @Component({
   selector: 'app-ingreso-form',

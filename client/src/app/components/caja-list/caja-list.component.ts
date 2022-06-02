@@ -42,8 +42,12 @@ export class CajaListComponent implements OnInit {
       },
     );
   }
-  editIngreso(id: string){
-    
+  deleteEgreso(id: string){
+    this.cajasService.deleteEgreso(id).subscribe(
+      res=>{
+        console.log(res);
+        this.getCaja();
+      },
+    );
   }
-
 }

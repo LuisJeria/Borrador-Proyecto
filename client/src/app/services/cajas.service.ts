@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 import{Ingreso} from '../models/Ingreso';
+import{Egreso} from'../models/Egreso';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -45,11 +46,11 @@ export class CajasService {
     return this.http.delete(`${this.API_URI}/egreso/${id}`);
   }
 
-  updateEgreso(id:string,updatedIngreso: Ingreso): Observable<Ingreso>{
-    return this.http.put(`${this.API_URI}/egreso`, updatedIngreso);
+  updateEgreso(id:string | number,updatedEgreso: Ingreso): Observable<Egreso>{
+    return this.http.put(`${this.API_URI}/egreso/${id}`, updatedEgreso);
   }
 
-  saveEgreso(ingreso: Ingreso){
-    return this.http.post(`${this.API_URI}/egreso`, ingreso);
+  saveEgreso(egreso: Egreso){
+    return this.http.post(`${this.API_URI}/egreso`, egreso);
   }
 }

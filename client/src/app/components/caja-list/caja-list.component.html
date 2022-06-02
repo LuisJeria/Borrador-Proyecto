@@ -45,8 +45,8 @@
           <td>{{egreso.neto}}</td>
           <td>{{egreso.iva}}</td>
           <td>{{egreso.total}}</td>
-          <td><button class ="btn btn-warning">Editar</button></td>
-          <td><button class="btn btn-danger">Eliminar</button></td>
+          <td><a [routerLink]="['/caja/egreso', egreso.id]" class = "btn btn-warning">Editar</a></td>
+        <td><button class ="btn btn-danger" (click)="deleteEgreso(egreso.id)">Eliminar</button></td>
         </tr>
     </tbody>
   </table>

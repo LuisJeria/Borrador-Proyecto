@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path:'caja/ingreso/:id',
     component : IngresoFormComponent
+  },
+  {
+    path:'caja/egreso/:id',
+    component : EgresoFormComponent
   }
 ];
 
