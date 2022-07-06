@@ -1,23 +1,33 @@
-<form>
-    <div class="form-group">
-      <label for="tipoDoc">Tipo Documento</label>
-      <input type="text" class="form-control" name="tipoDoc" [(ngModel)]="egreso.tipo_documento" placeholder="Ingresar Tipo Documento">
+
+<div class="offset-md-2" style="margin-top:50px"> 
+  <form>
+    <div class="form-group col-sm-8">
+      <label for="numDoc">Tipo Documento</label>
     </div>
-    <div class="form-group">
+    <select class="form-group col-sm-8" name="miselect" [(ngModel)]="egreso.tipo_documento" #selector = "ngModel">
+        <option [value]="item" *ngFor="let item of listaDoc">{{item}}</option>
+    </select>
+    <div>
+      <small class="bg-warning text-light mt-1 px-1 py-1 rounded" *ngIf="egreso.tipo_documento == '' && selector.touched"> Debe elegir Una Opcion</small>
+    </div>
+    <div class="form-group col-sm-8">
       <label for="numDoc">Numero Documento</label>
-      <input type="text" class="form-control" name="numDoc" [(ngModel)]="egreso.numero_documento" placeholder="Ingrese Numero Documento">
+      <input type="text" class="form-control" name="numDoc" [(ngModel)]="validador.numDoc.val" #doc = "ngModel">
+      <small class="bg-warning text-light mt-1 px-1 py-1 rounded" *ngIf="!validador.numDoc.isValid() && doc.touched">{{validador.numDoc.error}}</small>
     </div>
-    <div class="form-group">
+    <div class="form-group col-sm-8">
         <label for="neto">Valor Neto</label>
-        <input type="text" class="form-control" name="neto" [(ngModel)]="egreso.neto"placeholder="Ingrese Monto Neto">
+        <input type="text" class="form-control" name="neto" [(ngModel)]="validador.numNeto.val" #neto ="ngModel">
+        <small class="bg-warning text-light mt-1 px-1 py-1 rounded" *ngIf="!validador.numDoc.isValid() && neto.touched">{{validador.numNeto.error}}</small>
       </div>
-    <div class="form-group">
+      <div class="form-group col-sm-8">
         <label for="iva">IVA</label>
-        <input type="number" class="form-control" name="iva" [(ngModel)]="egreso.iva" placeholder="Ingrese monto iva">
+        <input type="text" class="form-control" name="iva" value = {{calcularIva}} readonly ="readonly">
       </div>
-      <div class="form-group">
-        <label for="total">Total</label>
-        <input type="number" class="form-control" name="total" [(ngModel)]="egreso.total" placeholder="Ingrese monto Total">
-      </div>
-      <button class="btn btn-primary" (click)="edit ? updateEgreso():saveNewEgreso()">Submit</button>
-  </form>
+        <div class="form-group col-sm-8">
+          <label for="total">Total</label>
+          <input type="text" class="form-control" name="total" value ={{calcularTotal}} readonly = "readonly">
+        </div>
+      <button class="btn btn-primary" (click)="edit ? updateEgreso():saveNewEgreso()">Guardar</button>
+    </form>
+</div>

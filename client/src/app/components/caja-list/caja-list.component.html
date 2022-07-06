@@ -1,5 +1,6 @@
-<H4>INGRESOS</H4>
-<table class="table">
+<div class="container col-md-11 offset-md-1" style="margin-top:25px"> 
+  <H4>INGRESOS</H4>
+  <table class="table table-striped table-hover">
     <thead>
       <tr>
         <th scope="col">Tipo Documento</th>
@@ -24,8 +25,10 @@
     </tbody>
    <a routerLink = "/caja/ingreso" class = "btn btn-primary">Nuevo Ingreso</a> 
   </table>
+</div>
+<div class="container col-md-11 offset-md-1" style="margin-top:25px">
   <h4>EGRESOS</h4>
-  <table class="table">
+  <table class="table table-striped table-hover">
     <thead>
       <tr>
         <th scope="col">Tipo Documento</th>
@@ -46,8 +49,9 @@
           <td>{{egreso.iva}}</td>
           <td>{{egreso.total}}</td>
           <td><a [routerLink]="['/caja/egreso', egreso.id]" class = "btn btn-warning">Editar</a></td>
-        <td><button class ="btn btn-danger" (click)="deleteEgreso(egreso.id)">Eliminar</button></td>
+          <td><button class ="btn btn-danger" (click)="deleteEgreso(egreso.id)">Eliminar</button></td>
         </tr>
     </tbody>
   </table>
-  <a routerLink = "/caja/egreso" class = "btn btn-primary">Nuevo Egreso</a> 
+  <a routerLink = "/caja/egreso" class = "btn btn-primary">Nuevo Egreso</a>
+</div> 

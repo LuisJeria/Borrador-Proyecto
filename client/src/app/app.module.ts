@@ -13,6 +13,7 @@ import { NavigatorComponent } from './components/navigator/navigator.component';
 import {IngresosService} from './services/ingresos.service';
 import {EgresosService} from './services/egresos.service';
 import {CajasService} from'./services/cajas.service';
+import { MesasListComponent } from './components/mesas-list/mesas-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {CajasService} from'./services/cajas.service';
     IngresoFormComponent,
     EgresoFormComponent,
     CajaListComponent,
-    NavigatorComponent
+    NavigatorComponent,
+    MesasListComponent
   ],
   imports: [
     BrowserModule,
