@@ -1,0 +1,84 @@
+<div class="offset-md-2 col-md-8" style="margin-top:50px"> 
+    <h4>Informacion del Pedido</h4>
+        <div class="input-group ">
+            <span class="input-group-text">Pedido</span>
+            <select class="form-group col-sm-4" name="miselect" [(ngModel)]="pedido.tipo">
+                <option [value]="item" *ngFor="let item of listaDoc">{{item}}</option>
+              </select>
+            <span class="input-group-text" 
+                style="border-left: 0; border-right: 0;">
+                Cantidad
+            </span>
+            <input type="text" class="form-control" name="numDoc" [(ngModel)]="validaCantidadPedido.val" #doc = "ngModel" />
+            <small class="bg-warning text-light mt-1 px-1 py-1 rounded" *ngIf="!validaCantidadPedido.isValid() && doc.touched">{{validaCantidadPedido.error}}</small>
+            <span class="input-group-text" 
+                style="border-left: 0; border-right: 0;">
+                Valor Neto
+            </span>
+            <input type="text" class="form-control" name="neto" value = {{CalculaCuenta()}} readonly ="readonly"/>    
+        </div>
+        <div class="input-group ">
+        <span class="input-group-text">Pedido</span>
+        <select class="form-group col-sm-4" name="miselect" [(ngModel)]="pedido1.tipo">
+            <option [value]="item" *ngFor="let item of listaDoc">{{item}}</option>
+          </select>
+        <span class="input-group-text" 
+            style="border-left: 0; border-right: 0;">
+            Cantidad
+        </span>
+        <input type="text" class="form-control" name="numDoc" [(ngModel)]="validaCantidadPedido1.val" #doc = "ngModel" />
+        <small class="bg-warning text-light mt-1 px-1 py-1 rounded" *ngIf="!validaCantidadPedido1.isValid() && doc.touched">{{validaCantidadPedido.error}}</small>
+        <span class="input-group-text" 
+            style="border-left: 0; border-right: 0;">
+            Valor Neto
+        </span>
+        <input type="text" class="form-control" name="neto" value = {{CalculaCuenta1()}} readonly ="readonly"/>    
+    </div>
+    <div class="input-group ">
+        <span class="input-group-text">Pedido</span>
+        <select class="form-group col-sm-4" name="miselect" [(ngModel)]="pedido2.tipo">
+            <option [value]="item" *ngFor="let item of listaDoc">{{item}}</option>
+          </select>
+        <span class="input-group-text" 
+            style="border-left: 0; border-right: 0;">
+            Cantidad
+        </span>
+        <input type="text" class="form-control" name="numDoc" [(ngModel)]="validaCantidadPedido2.val" #doc = "ngModel" />
+        <small class="bg-warning text-light mt-1 px-1 py-1 rounded" *ngIf="!validaCantidadPedido2.isValid() && doc.touched">{{validaCantidadPedido.error}}</small>
+        <span class="input-group-text" 
+            style="border-left: 0; border-right: 0;">
+            Valor Neto
+        </span>
+        <input type="text" class="form-control" name="neto" value = {{CalculaCuenta2()}} readonly ="readonly"/>    
+    </div>
+    <div class="input-group ">
+        <span class="input-group-text">Pedido</span>
+        <select class="form-group col-sm-4" name="miselect" [(ngModel)]="pedido3.tipo">
+            <option [value]="item" *ngFor="let item of listaDoc">{{item}}</option>
+          </select>
+        <span class="input-group-text" 
+            style="border-left: 0; border-right: 0;">
+            Cantidad
+        </span>
+        <input type="text" class="form-control" name="numDoc" [(ngModel)]="validaCantidadPedido3.val" #doc = "ngModel" />
+        <small class="bg-warning text-light mt-1 px-1 py-1 rounded" *ngIf="!validaCantidadPedido3.isValid() && doc.touched">{{validaCantidadPedido.error}}</small>
+        <span class="input-group-text" 
+            style="border-left: 0; border-right: 0;">
+            Valor Neto
+        </span>
+        <input type="text" class="form-control" name="neto" value = {{CalculaCuenta3()}} readonly ="readonly"/>    
+    </div>
+        <div class="offset-md-2 col-md-8">
+            <label for="subtotal">Subtotal</label>
+            <input type="text" class="form-control" name="neto" value = {{SumaCuenta()}} readonly ="readonly"/>    
+        </div>
+        <div class="offset-md-2 col-md-8">
+            <label for="iva">Iva</label>
+            <input type="text" class="form-control" name="neto" value = {{CalculaIva()}} readonly ="readonly"/>    
+        </div>
+        <div class="offset-md-2 col-md-8">
+            <label for="iva">Total</label>
+            <input type="text" class="form-control" name="neto" value = {{CalculaTotal()}} readonly ="readonly"/>    
+        </div>
+        <button class="btn btn-primary" (click)="saveNewPedido()">Pagar</button>
+</div>

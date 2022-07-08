@@ -6,6 +6,7 @@ import {Router,ActivatedRoute} from '@angular/router';
 import {CajasService} from '../../services/cajas.service';
 import { Validacion } from 'src/app/models/validacion';
 
+
 @Component({
   selector: 'app-ingreso-form',
   templateUrl: './ingreso-form.component.html',

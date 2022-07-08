@@ -11,9 +11,9 @@ import { CajaListComponent } from './components/caja-list/caja-list.component';
 import { NavigatorComponent } from './components/navigator/navigator.component';
 
 import {IngresosService} from './services/ingresos.service';
-import {EgresosService} from './services/egresos.service';
 import {CajasService} from'./services/cajas.service';
-import { MesasListComponent } from './components/mesas-list/mesas-list.component';
+import { MesasViewComponent } from './mesas-view/mesas-view.component';
+import { PedidosListComponent } from './pedidos-list/pedidos-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { MesasListComponent } from './components/mesas-list/mesas-list.component
     EgresoFormComponent,
     CajaListComponent,
     NavigatorComponent,
-    MesasListComponent
+    MesasViewComponent,
+    PedidosListComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +33,6 @@ import { MesasListComponent } from './components/mesas-list/mesas-list.component
   ],
   providers: [
     IngresosService,
-    EgresosService,
     CajasService
   ],
   bootstrap: [AppComponent]
